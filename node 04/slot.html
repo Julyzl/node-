@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+    <title>Document</title>
+</head>
+<style>
+    .demo {
+        width: 200px;
+        height: 100px;
+        ;
+        background: green !important;
+    }
+    
+    .demo1 {
+        width: 200px;
+        height: 100px;
+        color: blue;
+        background: red;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="demo1" :class="{demo:show}">
+            {{title}}
+        </div>
+        <button @click="change">show</button>
+        <h1>slot用法</h1>
+
+
+
+        <cpn :back="title">
+
+            <span slot='demo' slot-scope="m">
+                {{m}}
+            </span>
+            <span>菜单3</span>
+        </cpn>
+
+    </div>
+
+    <template id="cpn">
+            <div class="child">
+                    <h3>这里是子组件 头部</h3>
+                    <slot name='demo' :ss='title'>
+                    </slot>
+                    <h3>这里是子组件 尾部</h3>
+                   
+                    <div>
+                        <h1>默认插槽</h1>
+                        {{back}}
+                        <slot></slot>
+                    </div>
+                </div>
+        </template>
+</body>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: '爱嘉嘉',
+            show: false
+        },
+        methods: {
+            change() {
+                this.show = !this.show
+            }
+        },
+        components: {
+            cpn: {
+                template: "#cpn",
+                props: ['back'],
+                data() {
+                    return {
+                        show: true,
+                        title: 'aijiajia'
+                    }
+
+                }
+            }
+        }
+    })
+</script>
+
+</html>

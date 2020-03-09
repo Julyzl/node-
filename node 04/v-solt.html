@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="app">
+        <h1>v-slot用法</h1>
+        <!--默认插槽-->
+        <cpn :back="title">
+            <template v-slot> 
+                <div>默认插槽</div>
+            </template>
+        </cpn>
+
+        <!--具名插槽 也可以简写为#demo-->
+        <cpn :back="title">
+            <template v-slot='demo2'> 
+                    <div>具名插槽</div>
+                </template>
+        </cpn>
+
+        <!--作用域插槽 简写为#demo='slotporps'-->
+        <cpn :back="title">
+            <template #demo3='slotporps'> 
+                        <div>作用域插槽</div>
+                        {{slotporps.data}}
+                    </template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div class="child">
+            <header>
+                <!--默认插槽-->
+                <slot >{{back}}</slot>
+            </header>
+            <main>
+                   
+                <slot name='demo2'></slot>
+            </main>
+            <footer>
+                <slot name='demo3' :data='slotporps'></slot>
+            </footer>
+            </slot>
+        </div>
+    </template>
+</body>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: '爱嘉嘉',
+            show: false
+        },
+        methods: {
+            change() {
+                this.show = !this.show
+            }
+        },
+        components: {
+            cpn: {
+                template: "#cpn",
+                props: ['back'],
+                data() {
+                    return {
+                        show: true,
+                        title: 'aijiajia',
+                        slotporps: '子组件props'
+                    }
+
+                }
+            }
+        }
+    })
+</script>
+
+</html>

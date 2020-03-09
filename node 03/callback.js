@@ -1,16 +1,16 @@
-// const add = (x, y, callback) => {
-//     setTimeout(() => {
-//         let all = x + y
-//         callback(all)
-//     }, 1000);
-// }
+const add = (x, y, callback) => {
+    setTimeout(() => {
+        let all = x + y
+        callback(all)
+    }, 1000);
+}
 
-// function date(res) {
-//     console.log(res + new Date());
-// }
-// add(1, 2, (data) => {
-//     console.log(data);
-// })
+function date(res) {
+    console.log(res + new Date());
+}
+add(1, 2, (res) => {
+    date(res)
+})
 
 
 
@@ -32,14 +32,14 @@
 // })
 
 
-let fn = (x, y, callback) => {
-    let date = new Date();
-    let all = x + y
-    callback(date)
-    return all
-}
+// let fn = (x, y, callback) => {
+//     let date = new Date();
+//     let all = x + y
+//     callback(date)
+//     return all
+// }
 
-let a = fn(1, 2, (data) => {
-    console.log(data);
-})
-console.log(a)
+// let a = fn(1, 2, (data) => {
+//     console.log(data);
+// })
+// console.log(a)
